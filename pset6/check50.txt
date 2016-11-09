@@ -1,0 +1,19 @@
+~/workspace/pset6/ $ check50 2015.fall.pset6.server1 server.c
+:) server.c exists
+:) server compiles
+:) HTTP/1.0 returns error code 505
+:) Method of 'abcGET' returns error code 405
+:) Method of 'GETabc' returns error code 405
+:) request-target without starting '/' returns error code 501
+:) request-target of abc/hello.php returns error code 501
+:( Requesting cat.exe returns error code 501
+   \ expected output, but not "HTTP/1.1 400 Bad Request\r\nContent-Typ..."
+:( Requesting non-existant file returns error code 404
+   \ expected output, but not "HTTP/1.1 505 HTTP Version Not Supported..."
+:) Requesting request-target with " returns error code 400
+:) Two spaces after GET returns error code
+:) A space within the request target returns error code
+:) Two spaces before HTTP/1.1 returns error code
+https://sandbox.cs50.net/checks/f8ec1d6bb66c4ca1a9160297f0bdca05
+
+
