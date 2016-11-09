@@ -867,7 +867,7 @@ bool parse(const char* line, char* abs_path, char* query)
     {
         //parse absolute path from the request line without the last ? character
         strncpy(abs_path, rqst_trg, strlen(rqst_trg) - 1); 
-        strcat(abs_path, '\0');
+        strcat(abs_path, "");
         //the substring for query is absent, so query should be ""
         query[0] = '\0';                    
         //null terminating character was copied by strcpy
@@ -878,11 +878,10 @@ bool parse(const char* line, char* abs_path, char* query)
     {
         //parse the part of the request line that relates to the absomute path only, not the query
         strncpy(abs_path, rqst_trg, question - rqst_trg); 
-        strcat(abs_path, '\0');
+        strcat(abs_path, "");
         
         // parse the query to the query variable without the first ? character
-        strcpy(query, question + 1);                        
-        abs_path[strlen(abs_path)] = '\0';
+        strcpy(query, question + 1);          
         query[strlen(query)] = '\0';
     }
 
