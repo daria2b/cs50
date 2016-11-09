@@ -1,3 +1,5 @@
+First check passes:
+
 ~/workspace/pset6/ $ check50 2015.fall.pset6.server1 server.c
 :) server.c exists
 :) server compiles
@@ -6,14 +8,39 @@
 :) Method of 'GETabc' returns error code 405
 :) request-target without starting '/' returns error code 501
 :) request-target of abc/hello.php returns error code 501
-:( Requesting cat.exe returns error code 501
-   \ expected output, but not "HTTP/1.1 400 Bad Request\r\nContent-Typ..."
-:( Requesting non-existant file returns error code 404
-   \ expected output, but not "HTTP/1.1 505 HTTP Version Not Supported..."
+:) Requesting cat.exe returns error code 501
+:) Requesting non-existant file returns error code 404
 :) Requesting request-target with " returns error code 400
 :) Two spaces after GET returns error code
 :) A space within the request target returns error code
 :) Two spaces before HTTP/1.1 returns error code
-https://sandbox.cs50.net/checks/f8ec1d6bb66c4ca1a9160297f0bdca05
+https://sandbox.cs50.net/checks/cf381c17c10241df92a7d88659dda3ea
 
 
+
+
+Second check has several issues:
+
+~/workspace/pset6/ $ check50 2015.fall.pset6.server2 server.c
+Checking...........................................................................................
+:) server.c exists
+:) server compiles
+:( Requesting cat.jpg returns 200, image/jpeg, and correct image
+:( Requesting cat.html returns 200, text/html, and correct file
+:( Requesting cat2.HTML returns 200, text/html, and correct file
+:( Requesting cat3.HtMl returns 200, text/html, and correct file
+:( Requesting cat.gif returns 200, image/gif, and correct file
+:( Requesting favicon.ico returns 200, image/x-icon, and correct file
+:( Requesting test.css returns 200, text/css, and correct file
+:( Requesting test.js returns 200, text/javascript, and correct file
+:( Requesting hello.php returns 200, text/html, and correct output
+   \ expected output, but not "X-Powered-By: PHP/5.5.7\r\nContent-type..."
+:( Requesting hello.php? returns 200, text/html, and correct output
+   \ expected output, but not "X-Powered-By: PHP/5.5.7\r\nContent-type..."
+:( Requesting hello.php?name=Alice returns 200, text/html, and correct output
+   \ expected output, but not "X-Powered-By: PHP/5.5.7\r\n"
+:) Requesting /test redirects to /test/
+:( Requesting /test/ outputs /test/index.html
+:) Requesting directory containing index.php outputs index.php
+:( Requesting two files in a row (cat.html then cat.jpg) succeeds
+https://sandbox.cs50.net/checks/bc7edf15a5ea44188f07237038313f5b
