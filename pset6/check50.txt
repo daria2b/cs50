@@ -44,3 +44,5 @@ Checking........................................................................
 :) Requesting directory containing index.php outputs index.php
 :( Requesting two files in a row (cat.html then cat.jpg) succeeds
 https://sandbox.cs50.net/checks/bc7edf15a5ea44188f07237038313f5b
+
+The issue in the second check most likely lies in the string not being overwritten by new strings, which createsd crappy strings that cannot be used by the server.
