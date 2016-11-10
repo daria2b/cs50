@@ -654,11 +654,7 @@ void list(const char* path)
  * Stores address thereof in *content and length thereof in *length.
  */
 bool load(FILE* file, BYTE** content, size_t* length)
-{
-    // intialise content and length
-    //*content = NULL; 
-    //*length = 0; 
-    
+{  
     // seek to end of file
     fseek(file, 0, SEEK_END);      
     
@@ -681,7 +677,7 @@ bool load(FILE* file, BYTE** content, size_t* length)
     //stores the address of the first of the bytes in *content
     *content = buffer;
     
-    return false;
+    return true;
 }
 
 /**
