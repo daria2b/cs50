@@ -450,48 +450,53 @@ char* indexes(const char* path)
     
     //check if the directory contains index.php
     static char* temp;
-    temp = (char*)malloc((sizeof(char) * strlen(path)) + (sizeof(char) * strlen("index.php")) + 1);
+    temp = (char*)calloc(1,(sizeof(char) * strlen(path)) + (sizeof(char) * strlen("index.php")) + 1);
     if(temp == NULL)
     {
         printf("Error allocating memory for temp");
         error(418);
     }
-    
-    memset(temp, '\0', strlen(path) + strlen("index.php") + 1);
+   
     //to make sure we dont lose initial variable, creating a temporary placeholder for the value of path
     strcpy(temp, path);
     strcat(temp, "index.php");
     
-    if (access(temp, F_OK) == -1)       // if path to this file doesn't exist, return null
+    //if .php file doesn't exist, check for .html file
+    if (access(temp, F_OK) == -1)       
     {
-        return NULL;
+        free(temp);
+        //reallocate memory to change the path to .html file
+        temp = (char*)calloc(1, (sizeof(char) * strlen(path)) + (sizeof(char) * strlen("index.html")) + 1);
+        if(temp == NULL)
+        {
+            printf("Error allocating memory for temp");
+            error(500);
+        }
+        
+        //reset the temp variable to initial one and add new file type
+        strcpy(temp, path);
+        strcat(temp, "index.html");
+        
+        /*temporary print*/
+        printf("temp is: %s\n", temp);
+        
+        // if path to /index.html doesn't exist, return null
+        if (access(temp, F_OK) == -1)       
+        {
+            return NULL;
+        }
+        // otherwise return new path to directory /.index.html
+        else                                
+        {
+            return temp;
+        }
     }
-    else                                // otherwise return new path, written cuurently in temp
+    
+    //otherwise return new path to directory /.index.php
+    else                                
     {
-        return temp;
+        return temp; 
     }
-    
-    free(temp);
-    //check if the directory contains index.html
-    temp = (char*)malloc((sizeof(char) * strlen(path)) + (sizeof(char) * strlen("index.html")) + 1);
-    
-    memset(temp, '\0', strlen(path) + strlen("index.php") + 1);
-    
-    //reset the temp variable to initial one and add new file type
-    strcpy(temp, path);
-    strcat(temp, "index.html");
-    
-    // ensure path exists
-    if (access(temp, F_OK) == -1)       // if path to this file doesn't exist, return null
-    {
-        return NULL;
-    }
-    else                                // otherwise return new path, written cuurently in temp
-    {
-        return temp;
-    }
-    
-    return NULL;
 }
 
 /**
