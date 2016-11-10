@@ -19,30 +19,26 @@ https://sandbox.cs50.net/checks/cf381c17c10241df92a7d88659dda3ea
 
 
 
-Second check has several issues:
+Second check has couple of issues:
 
 ~/workspace/pset6/ $ check50 2015.fall.pset6.server2 server.c
-Checking...........................................................................................
 :) server.c exists
 :) server compiles
-:( Requesting cat.jpg returns 200, image/jpeg, and correct image
-:( Requesting cat.html returns 200, text/html, and correct file
-:( Requesting cat2.HTML returns 200, text/html, and correct file
-:( Requesting cat3.HtMl returns 200, text/html, and correct file
-:( Requesting cat.gif returns 200, image/gif, and correct file
-:( Requesting favicon.ico returns 200, image/x-icon, and correct file
-:( Requesting test.css returns 200, text/css, and correct file
-:( Requesting test.js returns 200, text/javascript, and correct file
+:) Requesting cat.jpg returns 200, image/jpeg, and correct image
+:) Requesting cat.html returns 200, text/html, and correct file
+:) Requesting cat2.HTML returns 200, text/html, and correct file
+:) Requesting cat3.HtMl returns 200, text/html, and correct file
+:) Requesting cat.gif returns 200, image/gif, and correct file
+:) Requesting favicon.ico returns 200, image/x-icon, and correct file
+:) Requesting test.css returns 200, text/css, and correct file
+:) Requesting test.js returns 200, text/javascript, and correct file
 :( Requesting hello.php returns 200, text/html, and correct output
-   \ expected output, but not "X-Powered-By: PHP/5.5.7\r\nContent-type..."
-:( Requesting hello.php? returns 200, text/html, and correct output
-   \ expected output, but not "X-Powered-By: PHP/5.5.7\r\nContent-type..."
+   \ expected output, but not "X-Powered-By: PHP/5.5.7\r\n"
+:) Requesting hello.php? returns 200, text/html, and correct output
 :( Requesting hello.php?name=Alice returns 200, text/html, and correct output
    \ expected output, but not "X-Powered-By: PHP/5.5.7\r\n"
 :) Requesting /test redirects to /test/
 :( Requesting /test/ outputs /test/index.html
 :) Requesting directory containing index.php outputs index.php
-:( Requesting two files in a row (cat.html then cat.jpg) succeeds
-https://sandbox.cs50.net/checks/bc7edf15a5ea44188f07237038313f5b
-
-The issue in the second check most likely lies in the string not being overwritten by new strings, which createsd crappy strings that cannot be used by the server.
+:) Requesting two files in a row (cat.html then cat.jpg) succeeds
+https://sandbox.cs50.net/checks/5ccd168dd3e145d2af13d2f96d6854cd
